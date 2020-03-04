@@ -2,9 +2,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('recipients', {
       id: {
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: Sequelize.UUIDV4,
+        autoIncrement: true,
         primaryKey: true,
       },
       name: {
@@ -33,6 +33,14 @@ module.exports = {
       },
       postal_code: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
     });
