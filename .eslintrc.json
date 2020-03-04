@@ -23,6 +23,7 @@
       {
         "argsIgnorePattern": "next"
       }
-    ]
+    ],
+    "no-console": "off"
   }
 }

@@ -1,9 +1,13 @@
 import { Router } from 'express';
 
+// Controllers
+import SessionController from './app/controllers/SessionController';
+
+// Validators
+import SessionStoreValidator from './app/validators/SessionStoreValidator';
+
 const routes = new Router();
 
-routes.get('/', (req, res) => {
-  res.json({ message: 'hello word' });
-});
+routes.post('/sessions', SessionStoreValidator, SessionController.store);
 
 export default routes;
