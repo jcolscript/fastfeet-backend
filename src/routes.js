@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 // Middlewares
 import auth from './app/middlewares/auth';
 
