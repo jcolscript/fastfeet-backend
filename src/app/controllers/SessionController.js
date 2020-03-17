@@ -18,9 +18,7 @@ class SessionController {
 
     const { id, name, cellphone } = user;
 
-    return res
-      .status(200)
-      .json({ id, name, cellphone, token: user.generateToken() });
+    return res.status(200).json({ id, name, cellphone, token: user.generateToken() });
   }
 }
 

@@ -1,6 +1,6 @@
-import Recipients from '../models/Recipients';
+import Recipient from '../models/Recipient';
 
-class RecipientsController {
+class RecipientController {
   async store(req, res) {
     const {
       id,
@@ -11,7 +11,7 @@ class RecipientsController {
       city,
       state,
       postal_code,
-    } = await Recipients.create(req.body);
+    } = await Recipient.create(req.body);
 
     return res
       .status(201)
@@ -19,4 +19,4 @@ class RecipientsController {
   }
 }
 
-export default new RecipientsController();
+export default new RecipientController();
