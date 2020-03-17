@@ -27,5 +27,6 @@ routes.post(
   Validators.deliverymanStore,
   DeliverymanController.store
 );
+routes.put('/deliverymen', auth, DeliverymanController.update);
 
 export default routes;
