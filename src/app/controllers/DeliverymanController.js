@@ -52,6 +52,19 @@ class DeliverymanController {
 
     return res.status(200).json({ id, name, email });
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const deliveryman = await Deliveryman.findByPk(id);
+
+    deliveryman.enabled = false;
+    deliveryman.save();
+
+    const { name, email } = deliveryman;
+
+    return res.status(200).json({ id, name, email });
+  }
 }
 
 export default new DeliverymanController();

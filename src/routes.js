@@ -28,5 +28,6 @@ routes.post(
   DeliverymanController.store
 );
 routes.put('/deliverymen', auth, DeliverymanController.update);
+routes.delete('/deliverymen/:id', auth, DeliverymanController.delete);
 
 export default routes;
