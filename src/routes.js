@@ -8,17 +8,14 @@ import SessionController from './app/controllers/SessionController';
 import RecipientsController from './app/controllers/RecipientsController';
 
 // Validators
-import SessionStoreValidator from './app/validators/SessionStoreValidator';
-import RecipientsStoreValidator from './app/validators/RecipientsStoreValidator';
+import Validators from './app/validators';
 
 const routes = new Router();
 
-routes.post('/sessions', SessionStoreValidator, SessionController.store);
-routes.post(
-  '/recipients',
-  RecipientsStoreValidator,
-  auth,
-  RecipientsController.store
-);
+// Sessions
+routes.post('/sessions', Validators.sessionStore, SessionController.store);
+
+// Recipients
+routes.post('/recipients', auth, Validators.recipientStore, RecipientsController.store);
 
 export default routes;
