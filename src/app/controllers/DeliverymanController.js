@@ -5,6 +5,7 @@ class DeliverymanController {
     const { page = 1 } = req.query;
 
     const deliverymen = await Deliveryman.findAll({
+      where: { enabled: true },
       attributes: ['id', 'name', 'email'],
       order: ['name'],
       limit: 20,
