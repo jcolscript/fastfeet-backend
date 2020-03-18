@@ -1,4 +1,5 @@
 import Deliveryman from '../models/Deliveryman';
+import File from '../models/File';
 
 class DeliverymanController {
   async index(req, res) {
@@ -7,6 +8,13 @@ class DeliverymanController {
     const deliverymen = await Deliveryman.findAll({
       where: { enabled: true },
       attributes: ['id', 'name', 'email'],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'name', 'path', 'url'],
+        },
+      ],
       order: ['name'],
       limit: 20,
       offset: (page - 1) * 20,
