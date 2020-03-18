@@ -1,6 +1,5 @@
-
-# Created by https://www.gitignore.io/api/node
-# Edit at https://www.gitignore.io/?templates=node
+# Created by https://www.gitignore.io/api/node,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=node,visualstudiocode
 
 ### Node ###
 # Logs
@@ -105,7 +104,16 @@ dist/
 .dynamodb/
 
 # Temporary folders
-tmp/
-temp/
+tmp/uploads/*
+!tmp/uploads/.gitkeep
 
-# End of https://www.gitignore.io/api/node
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
