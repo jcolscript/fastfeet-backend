@@ -15,6 +15,13 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      avatar_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'files', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: true,
+      },
       enabled: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
