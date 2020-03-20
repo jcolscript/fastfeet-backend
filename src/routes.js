@@ -24,6 +24,7 @@ routes.post('/sessions', Validators.sessionStore, SessionController.store);
 
 // Recipients
 routes.post('/recipients', auth, Validators.recipientStore, RecipientController.store);
+routes.put('/recipients/:id', auth, RecipientController.update);
 
 // Deliverymen
 routes.get('/deliverymen', auth, DeliverymanController.index);
