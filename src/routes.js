@@ -33,7 +33,7 @@ routes.post(
   Validators.deliverymanStore,
   DeliverymanController.store
 );
-routes.put('/deliverymen', auth, DeliverymanController.update);
+routes.put('/deliverymen/:id', auth, DeliverymanController.update);
 routes.delete('/deliverymen/:id', auth, DeliverymanController.delete);
 
 // Files

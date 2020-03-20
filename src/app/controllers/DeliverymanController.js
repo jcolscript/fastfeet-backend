@@ -44,7 +44,7 @@ class DeliverymanController {
   async update(req, res) {
     const { email } = req.body;
 
-    const deliveryman = await Deliveryman.findByPk(req.body.id);
+    const deliveryman = await Deliveryman.findByPk(req.params.id);
 
     if (email && email !== deliveryman.email) {
       const isDuplicated = await Deliveryman.findOne({
