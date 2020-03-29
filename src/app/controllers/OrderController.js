@@ -15,7 +15,7 @@ class OrderController {
       where: { canceled_at: null },
       attributes: [
         'id',
-        'product ',
+        'product',
         'start_date',
         'end_date',
         'canceled_at',
@@ -39,16 +39,7 @@ class OrderController {
         {
           model: Deliveryman,
           as: 'deliveryman',
-          attributes: [
-            'id',
-            'name',
-            'street',
-            'number',
-            'complement',
-            'city',
-            'state',
-            'postal_code',
-          ],
+          attributes: ['id', 'name', 'email'],
           include: [
             {
               model: File,
