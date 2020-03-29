@@ -92,7 +92,17 @@ class OrderController {
   }
 
   async update(req, res) {
-    return res.status(200).json();
+    const { id } = req.params;
+
+    const order = await Order.findByPk(id);
+
+    if (!order) {
+      return res.status(400).json({ error: 'Order not found' });
+    }
+
+    await order.update(req.body);
+
+    return res.status(200).json(order);
   }
 
   async delete(req, res) {
