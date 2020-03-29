@@ -40,6 +40,7 @@ routes.delete('/deliverymen/:id', auth, DeliverymanController.delete);
 
 // Orders
 routes.get('/orders', auth, OrderController.index);
+routes.post('/orders', auth, OrderController.store);
 
 // Files
 routes.post('/files', auth, upload.single('file'), FileController.store);

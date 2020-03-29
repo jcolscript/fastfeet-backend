@@ -3,6 +3,10 @@ import Recipient from '../models/Recipient';
 import Deliveryman from '../models/Deliveryman';
 import File from '../models/File';
 
+import Queue from '../../lib/Queue';
+
+import NewOrderMail from '../jobs/NewOrderMail';
+
 class OrderController {
   async index(req, res) {
     const { page = 1 } = req.query;
@@ -68,7 +72,32 @@ class OrderController {
   }
 
   async store(req, res) {
-    return res.status(201).json();
+    const { recipient_id, deliveryman_id, product } = req.body;
+
+    const deliveryman = await Deliveryman.findByPk(deliveryman_id);
+    const recipient = await Recipient.findByPk(recipient_id);
+
+    if (!deliveryman) {
+      return res.status(400).json({
+        message: "deliveryman doesn't exist",
+      });
+    }
+
+    if (!recipient) {
+      return res.status(400).json({
+        message: "recipient doesn't exist",
+      });
+    }
+
+    const order = await Order.create({ recipient_id, deliveryman_id, product });
+
+    await Queue.add(NewOrderMail.key, {
+      deliveryman,
+      recipient,
+      product,
+    });
+
+    return res.status(201).json(order);
   }
 
   async update(req, res) {
