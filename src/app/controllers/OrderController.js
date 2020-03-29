@@ -106,7 +106,18 @@ class OrderController {
   }
 
   async delete(req, res) {
-    return res.status(200).json();
+    const { id } = req.params;
+
+    const order = await Order.findByPk(id);
+
+    if (!order) {
+      return res.status(400).json({ error: 'Order not found' });
+    }
+
+    order.canceled_at = new Date();
+    order.save();
+
+    return res.status(200).json(order);
   }
 }
 
