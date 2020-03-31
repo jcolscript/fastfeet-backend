@@ -10,7 +10,7 @@ import RecipientController from './app/controllers/RecipientController';
 import FileController from './app/controllers/FileController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import OrderController from './app/controllers/OrderController';
-import StartDeliveryControlle from './app/controllers/StartDeliveryControlle';
+import StartDeliveryController from './app/controllers/StartDeliveryController';
 
 // Middlewares
 import auth from './app/middlewares/auth';
@@ -44,7 +44,7 @@ routes.get('/orders', auth, OrderController.index);
 routes.post('/orders', auth, OrderController.store);
 routes.put('/orders/:id', auth, OrderController.update);
 routes.delete('/orders/:id', auth, OrderController.delete);
-routes.put('/orders/:orderId/start', StartDeliveryControlle.update);
+routes.put('/orders/:orderId/start', StartDeliveryController.update);
 
 // Files
 routes.post('/files', auth, upload.single('file'), FileController.store);
