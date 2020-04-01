@@ -12,13 +12,14 @@ import DeliverymanController from './app/controllers/DeliverymanController';
 import OrderController from './app/controllers/OrderController';
 import StartDeliveryController from './app/controllers/StartDeliveryController';
 import FinishDeliveryController from './app/controllers/FinishDeliveryController';
+import DeliveryController from './app/controllers/DeliveryController';
+import DeliveryProblemsController from './app/controllers/DeliveryProblemsController';
 
 // Middlewares
 import auth from './app/middlewares/auth';
 
 // Validators
 import Validators from './app/validators';
-import DeliveryController from './app/controllers/DeliveryController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -51,6 +52,8 @@ routes.put('/orders/:orderId/start', StartDeliveryController.update);
 routes.put('/orders/:orderId/finish', FinishDeliveryController.update);
 
 // Problemns in Deliveries
+routes.get('/deliveries/problems', auth, DeliveryProblemsController.index);
+routes.get('/delivery/:id/problems');
 
 // Files
 routes.post('/files/signature', upload.single('file'), FileController.store);
