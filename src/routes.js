@@ -53,6 +53,7 @@ routes.put('/orders/:orderId/finish', FinishDeliveryController.update);
 
 // Problemns in Deliveries
 routes.get('/deliveries/problems', auth, DeliveryProblemsController.index);
+routes.get('/delivery/:id/problems', DeliveryProblemsController.show);
 routes.post('/delivery/:id/problems', DeliveryProblemsController.store);
 
 // Files

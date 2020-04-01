@@ -9,6 +9,7 @@ class DeliveryProblemsController {
     const { page = 1 } = req.query;
 
     const orders = await Order.findAll({
+      where: { canceled_at: null },
       attributes: [
         'id',
         'product',
@@ -62,6 +63,22 @@ class DeliveryProblemsController {
     });
 
     return res.status(200).json(orders);
+  }
+
+  async show(req, res) {
+    const { id } = req.params;
+
+    const order = await DeliveryProblem.findAll({
+      where: { delivery_id: id },
+    });
+
+    if (!order) {
+      return res.status(401).json({
+        message: 'order does not exists',
+      });
+    }
+
+    return res.status(201).json(order);
   }
 
   async store(req, res) {
