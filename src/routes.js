@@ -18,6 +18,7 @@ import auth from './app/middlewares/auth';
 
 // Validators
 import Validators from './app/validators';
+import DeliveryController from './app/controllers/DeliveryController';
 
 const routes = new Router();
 const upload = multer(multerConfig);
@@ -39,6 +40,7 @@ routes.post(
 );
 routes.put('/deliverymen/:id', auth, DeliverymanController.update);
 routes.delete('/deliverymen/:id', auth, DeliverymanController.delete);
+routes.get('/deliverymen/:id/deliveries', DeliveryController.index);
 
 // Orders
 routes.get('/orders', auth, OrderController.index);
