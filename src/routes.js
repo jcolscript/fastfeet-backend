@@ -51,6 +51,6 @@ routes.put('/orders/:orderId/start', StartDeliveryController.update);
 routes.put('/orders/:orderId/finish', FinishDeliveryController.update);
 
 // Files
-routes.post('/files', auth, upload.single('file'), FileController.store);
+routes.post('/files', upload.single('file'), FileController.store);
 
 export default routes;
