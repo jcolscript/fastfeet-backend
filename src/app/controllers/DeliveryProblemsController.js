@@ -137,6 +137,72 @@ class DeliveryProblemsController {
 
     return res.status(201).json(order);
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const problem = await DeliveryProblem.findByPk(id);
+
+    if (!problem) {
+      return res.status(401).json({
+        message: 'problem does not exists',
+      });
+    }
+
+    const order = await Order.findByPk(problem.delivery_id, {
+      attributes: [
+        'id',
+        'product',
+        'start_date',
+        'end_date',
+        'canceled_at',
+        'created_at',
+      ],
+      include: [
+        {
+          model: Recipient,
+          as: 'recipient',
+          attributes: [
+            'id',
+            'name',
+            'street',
+            'number',
+            'complement',
+            'city',
+            'state',
+            'postal_code',
+          ],
+        },
+        {
+          model: Deliveryman,
+          as: 'deliveryman',
+          attributes: ['id', 'name', 'email'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'name', 'path', 'url'],
+            },
+          ],
+        },
+        {
+          model: File,
+          as: 'signature',
+          attributes: ['id', 'name', 'path', 'url'],
+        },
+        {
+          model: DeliveryProblem,
+          as: 'problems',
+          attributes: ['id', 'description'],
+        },
+      ],
+    });
+
+    order.canceled_at = new Date();
+    await order.save();
+
+    return res.status(200).json(order);
+  }
 }
 
 export default new DeliveryProblemsController();

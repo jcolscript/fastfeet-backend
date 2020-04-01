@@ -55,6 +55,7 @@ routes.put('/orders/:orderId/finish', FinishDeliveryController.update);
 routes.get('/deliveries/problems', auth, DeliveryProblemsController.index);
 routes.get('/delivery/:id/problems', DeliveryProblemsController.show);
 routes.post('/delivery/:id/problems', DeliveryProblemsController.store);
+routes.delete('/problem/:id/cancel-delivery', auth, DeliveryProblemsController.delete);
 
 // Files
 routes.post('/files/signature', upload.single('file'), FileController.store);
