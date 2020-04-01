@@ -27,6 +27,7 @@ class Order extends Model {
       as: 'deliveryman',
     });
     this.belongsTo(models.File, { foreignKey: 'signature_id', as: 'signature' });
+    this.hasMany(models.DeliveryProblems, { foreignKey: 'delivery_id', as: 'problems' });
   }
 }
 
