@@ -50,7 +50,10 @@ routes.delete('/orders/:id', auth, OrderController.delete);
 routes.put('/orders/:orderId/start', StartDeliveryController.update);
 routes.put('/orders/:orderId/finish', FinishDeliveryController.update);
 
+// Problemns in Deliveries
+
 // Files
-routes.post('/files', upload.single('file'), FileController.store);
+routes.post('/files/signature', upload.single('file'), FileController.store);
+routes.post('/files', auth, upload.single('file'), FileController.store);
 
 export default routes;
