@@ -204,8 +204,6 @@ class DeliveryProblemsController {
       ],
     });
 
-    console.log(problem);
-
     order.canceled_at = new Date();
     await order.save();
 
