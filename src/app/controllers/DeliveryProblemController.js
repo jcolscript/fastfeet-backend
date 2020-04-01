@@ -4,6 +4,10 @@ import File from '../models/File';
 import Deliveryman from '../models/Deliveryman';
 import DeliveryProblem from '../models/DeliveryProblem';
 
+import Queue from '../../lib/Queue';
+
+import CancellationOrderMail from '../jobs/CancellationOrderMail';
+
 class DeliveryProblemsController {
   async index(req, res) {
     const { page = 1 } = req.query;
@@ -141,7 +145,9 @@ class DeliveryProblemsController {
   async delete(req, res) {
     const { id } = req.params;
 
-    const problem = await DeliveryProblem.findByPk(id);
+    const problem = await DeliveryProblem.findByPk(id, {
+      attributes: ['id', 'delivery_id', 'description', 'created_at'],
+    });
 
     if (!problem) {
       return res.status(401).json({
@@ -198,8 +204,17 @@ class DeliveryProblemsController {
       ],
     });
 
+    console.log(problem);
+
     order.canceled_at = new Date();
     await order.save();
+
+    await Queue.add(CancellationOrderMail.key, {
+      deliveryman: order.deliveryman,
+      recipient: order.recipient,
+      product: order.product,
+      problem: problem.description,
+    });
 
     return res.status(200).json(order);
   }

@@ -13,7 +13,7 @@ import OrderController from './app/controllers/OrderController';
 import StartDeliveryController from './app/controllers/StartDeliveryController';
 import FinishDeliveryController from './app/controllers/FinishDeliveryController';
 import DeliveryController from './app/controllers/DeliveryController';
-import DeliveryProblemsController from './app/controllers/DeliveryProblemsController';
+import DeliveryProblemsController from './app/controllers/DeliveryProblemController';
 
 // Middlewares
 import auth from './app/middlewares/auth';
