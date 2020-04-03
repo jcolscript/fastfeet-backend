@@ -39,7 +39,12 @@ routes.post(
   Validators.deliverymanStore,
   DeliverymanController.store
 );
-routes.put('/deliverymen/:id', auth, DeliverymanController.update);
+routes.put(
+  '/deliverymen/:id',
+  auth,
+  Validators.delivemanUpdate,
+  DeliverymanController.update
+);
 routes.delete('/deliverymen/:id', auth, DeliverymanController.delete);
 routes.get('/deliverymen/:id/deliveries', DeliveryController.index);
 
